@@ -17,19 +17,27 @@ public class Test {
     
     private Singer pattiSmith;
     private Singer bruceSpringsteen;
+    private Singer pattiAndBruce;
     
     private void initializeSingingInThreads() {
-        String lyrics1 = "Because the night";
-        String lyrics2 = "Belongs to lovers";
+        String lyrics1 = "Because the night belongs to lovers";
+        String lyrics2 = "Because the night belongs to lust";
+        String preChorus = "Come on now try and understand\r\n" + 
+        		"The way I feel when I'm in your hands\r\n" + 
+        		"Take my hand come undercover\r\n" + 
+        		"They can't hurt you now\r\n" + 
+        		"Can't hurt you now, can't hurt you now";
         
         boolean stopIt = false;
-        Synchronizer synch = new Synchronizer(true);
+        Synchronizer synch = new Synchronizer(false,false);
         
-        Performance firstVoicePerformance = new Performance(lyrics1, 1500);
-        Performance secondVoicePerformance = new Performance(lyrics2, 1500);
+        Performance firstVoicePerformance = new Performance(lyrics1, 5000);
+        Performance secondVoicePerformance = new Performance(lyrics2, 5000);
+        Performance together = new Performance(preChorus, 1000);
         
         pattiSmith = new Singer("Patti Smith", Voice.FIRST, firstVoicePerformance, stopIt, synch);
         bruceSpringsteen = new Singer("Bruce Springsteen", Voice.SECOND, secondVoicePerformance, stopIt, synch);
+        pattiAndBruce = new Singer("Patti Smith & Bruce Springsteen", Voice.TOGETHER, together, stopIt, synch);
     }
     
     public void testSingInThreads() {
@@ -38,10 +46,12 @@ public class Test {
         
         pattiSmith.start();
         bruceSpringsteen.start();
+        pattiAndBruce.start();
         
         IN.nextLine();
         pattiSmith.setStopIt(true);
         bruceSpringsteen.setStopIt(true);
+        pattiAndBruce.setStopIt(true);
         
     }
     

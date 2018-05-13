@@ -41,7 +41,9 @@ public class Singer extends Thread {
     
     private synchronized void sing() {
         while (!stopIt) {
-            if (this.voice == Voice.FIRST) {
+        	if (this.voice == Voice.TOGETHER) {
+        		this.synch.singTogether(performance.getLyrics(), performance.getDelay());
+        	} else if (this.voice == Voice.FIRST) {
                 this.synch.singFirstVoice(performance.getLyrics(), performance.getDelay());
             } else {
                 this.synch.singSecondVoice(performance.getLyrics(), performance.getDelay());
