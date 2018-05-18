@@ -16,7 +16,7 @@ public class Synchronizer {
     }
     
     public synchronized void singFirstVoice(String lyrics, int delay) {
-        while (!firstVoiceFlag || secondVoiceFlag) {
+        while (!firstVoiceFlag) {
             try {
                 wait();
             } catch (InterruptedException e) {
@@ -28,7 +28,7 @@ public class Synchronizer {
     }
     
     public synchronized void singSecondVoice(String lyrics, int delay) {
-        while (firstVoiceFlag || !secondVoiceFlag) {
+        while (!secondVoiceFlag) {
             try {
                 wait();
             } catch (InterruptedException e) {

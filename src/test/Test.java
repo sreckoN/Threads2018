@@ -20,20 +20,27 @@ public class Test {
     private Singer pattiAndBruce;
     
     private void initializeSingingInThreads() {
-        String lyrics1 = "Because the night belongs to lovers";
-        String lyrics2 = "Because the night belongs to lust";
-        String preChorus = "Come on now try and understand\r\n" + 
+    	String preChorus = "Come on now try and understand\r\n" + 
         		"The way I feel when I'm in your hands\r\n" + 
         		"Take my hand come undercover\r\n" + 
         		"They can't hurt you now\r\n" + 
-        		"Can't hurt you now, can't hurt you now";
+        		"Can't hurt you now, can't hurt you now\r\n";
+        String chorus = "Because the night belongs to lovers\r\n" +
+        		"Because the night belongs to lust\r\n" +
+        		"Because the night belongs to lovers\r\n" +
+        		"Because the night belongs to us\r\n";
+        String verse2 = "Have I doubt when I'm alone\r\n" +
+        		"Love is a ring, the telephone\r\n" +
+        		"Love is an angel disguised as lust\r\n" +
+        		"Here in our bed until the morning comes\r\n";
+        
         
         boolean stopIt = false;
-        Synchronizer synch = new Synchronizer(false,false);
+        Synchronizer synch = new Synchronizer(true,false);
         
-        Performance firstVoicePerformance = new Performance(lyrics1, 5000);
-        Performance secondVoicePerformance = new Performance(lyrics2, 5000);
-        Performance together = new Performance(preChorus, 1000);
+        Performance firstVoicePerformance = new Performance(preChorus, 5000);
+        Performance secondVoicePerformance = new Performance(verse2, 5000);
+        Performance together = new Performance(chorus, 5000);
         
         pattiSmith = new Singer("Patti Smith", Voice.FIRST, firstVoicePerformance, stopIt, synch);
         bruceSpringsteen = new Singer("Bruce Springsteen", Voice.SECOND, secondVoicePerformance, stopIt, synch);
