@@ -16,6 +16,7 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class ThreadGUI extends JFrame {
 
@@ -25,6 +26,7 @@ public class ThreadGUI extends JFrame {
 	private JButton btnStop;
 	private JScrollPane scrollPane;
 	private JTextArea textAreaEkran;
+	private JButton btnIzlaz;
 
 	
 
@@ -34,7 +36,7 @@ public class ThreadGUI extends JFrame {
 	public ThreadGUI() {
 		setTitle("Patti Smith - Because The Night ft. Bruce Springsteen");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 688, 458);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -52,19 +54,27 @@ public class ThreadGUI extends JFrame {
 				gl_panelEast.createParallelGroup(Alignment.LEADING)
 					.addGroup(gl_panelEast.createSequentialGroup()
 						.addGap(10)
-						.addGroup(gl_panelEast.createParallelGroup(Alignment.LEADING)
-							.addComponent(getBtnStart(), GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-							.addComponent(getBtnStop(), GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
+						.addComponent(getBtnStart(), GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
 						.addGap(10))
+					.addGroup(Alignment.TRAILING, gl_panelEast.createSequentialGroup()
+						.addContainerGap()
+						.addComponent(getBtnStop(), GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+						.addContainerGap())
+					.addGroup(gl_panelEast.createSequentialGroup()
+						.addContainerGap()
+						.addComponent(getBtnIzlaz(), GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+						.addContainerGap())
 			);
 			gl_panelEast.setVerticalGroup(
 				gl_panelEast.createParallelGroup(Alignment.LEADING)
 					.addGroup(gl_panelEast.createSequentialGroup()
 						.addGap(5)
 						.addComponent(getBtnStart(), GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED, 189, Short.MAX_VALUE)
+						.addPreferredGap(ComponentPlacement.RELATED, 302, Short.MAX_VALUE)
 						.addComponent(getBtnStop(), GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-						.addGap(9))
+						.addGap(18)
+						.addComponent(getBtnIzlaz())
+						.addContainerGap())
 			);
 			panelEast.setLayout(gl_panelEast);
 		}
@@ -107,5 +117,17 @@ public class ThreadGUI extends JFrame {
 			textAreaEkran = new JTextArea();
 		}
 		return textAreaEkran;
+	}
+	private JButton getBtnIzlaz() {
+		if (btnIzlaz == null) {
+			btnIzlaz = new JButton("Izlaz");
+			btnIzlaz.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					System.exit(0);
+				}
+			});
+			btnIzlaz.setForeground(new Color(0, 0, 0));
+		}
+		return btnIzlaz;
 	}
 }
