@@ -13,10 +13,12 @@ import javax.swing.JTextArea;
 import java.awt.Component;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+import javax.swing.JLabel;
 
 public class ThreadGUI extends JFrame {
 
@@ -27,6 +29,7 @@ public class ThreadGUI extends JFrame {
 	private JScrollPane scrollPane;
 	private JTextArea textAreaEkran;
 	private JButton btnIzlaz;
+	private JLabel lblPhoto;
 
 	
 
@@ -36,7 +39,7 @@ public class ThreadGUI extends JFrame {
 	public ThreadGUI() {
 		setTitle("Patti Smith - Because The Night ft. Bruce Springsteen");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 688, 458);
+		setBounds(100, 100, 760, 498);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -48,29 +51,27 @@ public class ThreadGUI extends JFrame {
 	private JPanel getPanelEast() {
 		if (panelEast == null) {
 			panelEast = new JPanel();
-			panelEast.setPreferredSize(new Dimension(120, 30));
+			panelEast.setPreferredSize(new Dimension(160, 60));
 			GroupLayout gl_panelEast = new GroupLayout(panelEast);
 			gl_panelEast.setHorizontalGroup(
 				gl_panelEast.createParallelGroup(Alignment.LEADING)
 					.addGroup(gl_panelEast.createSequentialGroup()
-						.addGap(10)
-						.addComponent(getBtnStart(), GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-						.addGap(10))
-					.addGroup(Alignment.TRAILING, gl_panelEast.createSequentialGroup()
 						.addContainerGap()
-						.addComponent(getBtnStop(), GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-						.addContainerGap())
-					.addGroup(gl_panelEast.createSequentialGroup()
-						.addContainerGap()
-						.addComponent(getBtnIzlaz(), GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+						.addGroup(gl_panelEast.createParallelGroup(Alignment.LEADING)
+							.addComponent(getBtnStop(), Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+							.addComponent(getBtnIzlaz(), Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+							.addComponent(getBtnStart(), Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+							.addComponent(getLblPhoto(), GroupLayout.PREFERRED_SIZE, 140, Short.MAX_VALUE))
 						.addContainerGap())
 			);
 			gl_panelEast.setVerticalGroup(
 				gl_panelEast.createParallelGroup(Alignment.LEADING)
 					.addGroup(gl_panelEast.createSequentialGroup()
-						.addGap(5)
+						.addGap(41)
 						.addComponent(getBtnStart(), GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED, 302, Short.MAX_VALUE)
+						.addGap(57)
+						.addComponent(getLblPhoto(), GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
 						.addComponent(getBtnStop(), GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
 						.addGap(18)
 						.addComponent(getBtnIzlaz())
@@ -129,5 +130,13 @@ public class ThreadGUI extends JFrame {
 			btnIzlaz.setForeground(new Color(0, 0, 0));
 		}
 		return btnIzlaz;
+	}
+	private JLabel getLblPhoto() {
+		if (lblPhoto == null) {
+			lblPhoto = new JLabel("");
+			lblPhoto.setIcon(new ImageIcon(ThreadGUI.class.getResource("/icons/patti.jpg")));
+			
+		}
+		return lblPhoto;
 	}
 }
