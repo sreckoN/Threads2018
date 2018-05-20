@@ -8,11 +8,15 @@ public class Synchronizer {
     
     private boolean firstVoiceFlag;
     private boolean secondVoiceFlag;
+    
+    private boolean togetherFlag;
 
-    public Synchronizer(boolean firstVoiceFlag, boolean secondVoiceFlag) {
+    public Synchronizer(boolean firstVoiceFlag, boolean secondVoiceFlag, boolean together) {
         super();
         this.firstVoiceFlag = firstVoiceFlag;
         this.secondVoiceFlag = secondVoiceFlag;
+        
+        this.togetherFlag = together;
     }
     
     public synchronized void singFirstVoice(String lyrics, int delay) {
@@ -40,7 +44,7 @@ public class Synchronizer {
     }
     
     public synchronized void singTogether(String lyrics, int delay) {
-    	while (firstVoiceFlag || secondVoiceFlag) {
+    	while (!togetherFlag) {
     		try {
 				wait();
 			} catch (InterruptedException e) {
@@ -53,15 +57,29 @@ public class Synchronizer {
     
     private void sing(String lyrics, int delay) {
         System.out.println(lyrics);
+        
         try {
             wait(delay);
         } catch (InterruptedException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        firstVoiceFlag = !firstVoiceFlag;
+        /*firstVoiceFlag = !firstVoiceFlag;
         secondVoiceFlag = !secondVoiceFlag;
-        notifyAll();
+        notifyAll();*/
+        if(firstVoiceFlag) {
+        	firstVoiceFlag = !firstVoiceFlag;
+        	togetherFlag = !togetherFlag;
+        	notifyAll();
+        } else if (togetherFlag) {
+        	togetherFlag = !togetherFlag;
+        	secondVoiceFlag = !secondVoiceFlag;
+        	notifyAll();
+        } else if (secondVoiceFlag) {
+        	secondVoiceFlag = !secondVoiceFlag;
+        	firstVoiceFlag = !firstVoiceFlag;
+        	notifyAll();
+        }
     }
 
 }

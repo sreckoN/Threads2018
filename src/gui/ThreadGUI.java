@@ -14,6 +14,8 @@ import java.awt.Component;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ThreadGUI extends JFrame {
 
@@ -22,7 +24,7 @@ public class ThreadGUI extends JFrame {
 	private JButton btnStart;
 	private JButton btnStop;
 	private JScrollPane scrollPane;
-	private JTextArea textArea;
+	private JTextArea textAreaEkran;
 
 	/**
 	 * Launch the application.
@@ -44,6 +46,7 @@ public class ThreadGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public ThreadGUI() {
+		setTitle("Patti Smith - Because The Night ft. Bruce Springsteen");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -84,6 +87,11 @@ public class ThreadGUI extends JFrame {
 	private JButton getBtnStart() {
 		if (btnStart == null) {
 			btnStart = new JButton("Start");
+			btnStart.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					
+				}
+			});
 			btnStart.setAlignmentX(Component.CENTER_ALIGNMENT);
 			btnStart.setAlignmentY(Component.TOP_ALIGNMENT);
 		}
@@ -99,15 +107,15 @@ public class ThreadGUI extends JFrame {
 	private JScrollPane getScrollPane() {
 		if (scrollPane == null) {
 			scrollPane = new JScrollPane();
-			scrollPane.setViewportView(getTextArea());
+			scrollPane.setViewportView(getTextAreaEkran());
 		}
 		return scrollPane;
 	}
-	private JTextArea getTextArea() {
-		if (textArea == null) {
-			textArea = new JTextArea();
-			textArea.setEditable(false);
+	private JTextArea getTextAreaEkran() {
+		if (textAreaEkran == null) {
+			textAreaEkran = new JTextArea();
+			textAreaEkran.setEditable(false);
 		}
-		return textArea;
+		return textAreaEkran;
 	}
 }

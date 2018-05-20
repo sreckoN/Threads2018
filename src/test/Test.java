@@ -20,27 +20,27 @@ public class Test {
     private Singer pattiAndBruce;
     
     private void initializeSingingInThreads() {
-    	String preChorus = "Come on now try and understand\r\n" + 
-        		"The way I feel when I'm in your hands\r\n" + 
-        		"Take my hand come undercover\r\n" + 
+    	String preChorus = "Come on now try and understand\n" + 
+        		"The way I feel when I'm in your hands\n" + 
+        		"Take my hand come undercover\n" + 
         		"They can't hurt you now\r\n" + 
-        		"Can't hurt you now, can't hurt you now\r\n";
-        String chorus = "Because the night belongs to lovers\r\n" +
-        		"Because the night belongs to lust\r\n" +
-        		"Because the night belongs to lovers\r\n" +
-        		"Because the night belongs to us\r\n";
-        String verse2 = "Have I doubt when I'm alone\r\n" +
-        		"Love is a ring, the telephone\r\n" +
-        		"Love is an angel disguised as lust\r\n" +
-        		"Here in our bed until the morning comes\r\n";
+        		"Can't hurt you now, can't hurt you now\n";
+        String chorus = "Because the night belongs to lovers\n" +
+        		"Because the night belongs to lust\n" +
+        		"Because the night belongs to lovers\n" +
+        		"Because the night belongs to us\n";
+        String verse2 = "Have I doubt when I'm alone\n" +
+        		"Love is a ring, the telephone\n" +
+        		"Love is an angel disguised as lust\n" +
+        		"Here in our bed until the morning comes\n";
         
         
         boolean stopIt = false;
-        Synchronizer synch = new Synchronizer(true,false);
+        Synchronizer synch = new Synchronizer(true,false, false);
         
-        Performance firstVoicePerformance = new Performance(preChorus, 5000);
-        Performance secondVoicePerformance = new Performance(verse2, 5000);
-        Performance together = new Performance(chorus, 5000);
+        Performance firstVoicePerformance = new Performance(preChorus, 6000);
+        Performance secondVoicePerformance = new Performance(verse2, 6000);
+        Performance together = new Performance(chorus, 6000);
         
         pattiSmith = new Singer("Patti Smith", Voice.FIRST, firstVoicePerformance, stopIt, synch);
         bruceSpringsteen = new Singer("Bruce Springsteen", Voice.SECOND, secondVoicePerformance, stopIt, synch);
