@@ -4,22 +4,19 @@
  */
 package test;
 
-import java.util.Scanner;
-
+import javax.swing.JTextArea;
 import music.Performance;
 import music.Singer;
 import music.Synchronizer;
 import music.Voice;
 
 public class Test {
-
-    public static final Scanner IN = new Scanner(System.in);
     
     private Singer pattiSmith;
     private Singer bruceSpringsteen;
     private Singer pattiAndBruce;
     
-    private void initializeSingingInThreads() {
+    private void initializeSingingInThreads(JTextArea textArea) {
     	String preChorus = "Come on now try and understand\n" + 
         		"The way I feel when I'm in your hands\n" + 
         		"Take my hand come undercover\n" + 
@@ -36,7 +33,7 @@ public class Test {
         
         
         boolean stopIt = false;
-        Synchronizer synch = new Synchronizer(true,false, false);
+        Synchronizer synch = new Synchronizer(true,false, false, textArea);
         
         Performance firstVoicePerformance = new Performance(preChorus, 6000);
         Performance secondVoicePerformance = new Performance(verse2, 6000);
@@ -47,19 +44,19 @@ public class Test {
         pattiAndBruce = new Singer("Patti Smith & Bruce Springsteen", Voice.TOGETHER, together, stopIt, synch);
     }
     
-    public void testSingInThreads() {
-        
-        initializeSingingInThreads();
+    public void startThreads(JTextArea textArea) {
+        initializeSingingInThreads(textArea);
         
         pattiSmith.start();
         bruceSpringsteen.start();
         pattiAndBruce.start();
         
-        IN.nextLine();
-        pattiSmith.setStopIt(true);
+    }
+    
+    public void stopAll() {
+    	pattiSmith.setStopIt(true);
         bruceSpringsteen.setStopIt(true);
         pattiAndBruce.setStopIt(true);
-        
     }
     
     public void simpleDelay() {

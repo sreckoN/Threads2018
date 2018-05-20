@@ -2,11 +2,11 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import gui.controller.GuiController;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -26,21 +26,7 @@ public class ThreadGUI extends JFrame {
 	private JScrollPane scrollPane;
 	private JTextArea textAreaEkran;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ThreadGUI frame = new ThreadGUI();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
 
 	/**
 	 * Create the frame.
@@ -89,7 +75,7 @@ public class ThreadGUI extends JFrame {
 			btnStart = new JButton("Start");
 			btnStart.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					
+					GuiController.singInThreads(textAreaEkran);
 				}
 			});
 			btnStart.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -100,6 +86,11 @@ public class ThreadGUI extends JFrame {
 	private JButton getBtnStop() {
 		if (btnStop == null) {
 			btnStop = new JButton("Stop");
+			btnStop.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					GuiController.stopAllThreads();
+				}
+			});
 			btnStop.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		}
 		return btnStop;
@@ -111,10 +102,9 @@ public class ThreadGUI extends JFrame {
 		}
 		return scrollPane;
 	}
-	private JTextArea getTextAreaEkran() {
+	public JTextArea getTextAreaEkran() {
 		if (textAreaEkran == null) {
 			textAreaEkran = new JTextArea();
-			textAreaEkran.setEditable(false);
 		}
 		return textAreaEkran;
 	}
